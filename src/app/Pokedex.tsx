@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation"; // Import useRouter
-import NavBar from "./NavBar"; // Import Navbar component
+import { useRouter } from "next/navigation";
+import NavBar from "./NavBar"; 
 
 interface PokemonData {
   abilities: string;
