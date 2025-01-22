@@ -34529,7 +34529,7 @@
    "is_legendary": 0
  },
 {
-   "abilities": "['Can Drive anyone 🌚', 'Sleeping']",
+   "abilities": "['Can Drive anyone', 'Sleeping']",
    "against_bug": 1,
    "against_dark": 1,
    "against_dragon": 1,
@@ -34608,7 +34608,7 @@
    "sp_attack": 20,
    "sp_defense": 10,
    "speed": 45,
-   "type1": "Pokie 🎀",
+   "type1": "Pokie",
    "type2": "Bat-Man",
    "weight_kg": 6.9,
    "generation": 1,
