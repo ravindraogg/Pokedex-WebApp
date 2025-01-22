@@ -34483,7 +34483,7 @@
         "type2": "Legend",
         "weight_kg": 6.9,
         "generation": 1,
-        "is_legendary": 0
+        "is_legendary": 1
     },
     {
         "abilities": "['Fluttering', 'Sleep']",
@@ -34526,7 +34526,7 @@
         "type2": "Legend",
         "weight_kg": 6.9,
         "generation": 1,
-        "is_legendary": 0
+        "is_legendary": 1
     },
     {
         "abilities": "['Can Drive anyone 🌚', 'Sleeping']",
@@ -34569,7 +34569,7 @@
         "type2": "Sigma Male",
         "weight_kg": 6.9,
         "generation": 1,
-        "is_legendary": 0
+        "is_legendary": 1
     },
     {
         "abilities": "['Follow', 'Sleep']",
@@ -34612,6 +34612,6 @@
         "type2": "Bat-Man",
         "weight_kg": 6.9,
         "generation": 1,
-        "is_legendary": 0
+        "is_legendary": 1
     }
 ]
