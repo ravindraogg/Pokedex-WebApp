@@ -1,5 +1,4 @@
 [
-<<<<<<< HEAD
   {
     "abilities": "['Overgrow', 'Chlorophyll']",
     "against_bug": 1,
@@ -34614,8 +34613,7 @@
     "weight_kg": 6.9,
     "generation": 1,
     "is_legendary": 1
-  }
-=======
+  },
  {
    "abilities": "['Overgrow', 'Chlorophyll']",
    "against_bug": 1,
@@ -69059,5 +69057,4 @@
    "generation": 7,
    "is_legendary": 1
  }
->>>>>>> de6fa699627de7ad0ccf6efd7ace337da2b71fef
 ]
