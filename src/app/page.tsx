@@ -15,8 +15,11 @@ interface PokemonData {
 
 const HomePage: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<PokemonData[]>([]);
+  const [displayedPokemon, setDisplayedPokemon] = useState<PokemonData[]>([]);
   const [currentPokemon, setCurrentPokemon] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 12; // Number of Pokémon to load per page
   const router = useRouter();
 
   useEffect(() => {
@@ -28,6 +31,8 @@ const HomePage: React.FC = () => {
         }
         const data = await response.json();
         setPokemonList(data);
+        // Initially display the first page of Pokémon
+        setDisplayedPokemon(data.slice(0, itemsPerPage));
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -37,6 +42,16 @@ const HomePage: React.FC = () => {
 
     fetchPokemonData();
   }, []);
+
+  // Load more Pokémon when the "Load More" button is clicked
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    const startIndex = page * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const newPokemon = pokemonList.slice(startIndex, endIndex);
+    setDisplayedPokemon((prev) => [...prev, ...newPokemon]);
+    setPage(nextPage);
+  };
 
   const handleCardClick = (pokedex_number: number, name: string) => {
     setCurrentPokemon(name);
@@ -68,6 +83,7 @@ const HomePage: React.FC = () => {
             className={`w-full h-full object-contain transition-opacity duration-300 ${
               imageLoading ? 'opacity-0' : 'opacity-100'
             }`}
+            loading="lazy" // Native lazy loading for images
             onLoad={() => setImageLoading(false)}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
@@ -118,11 +134,23 @@ const HomePage: React.FC = () => {
             <PokeBallSpinner />
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pokemonList.map((pokemon) => (
-              <PokemonCard key={pokemon.pokedex_number} pokemon={pokemon} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedPokemon.map((pokemon) => (
+                <PokemonCard key={pokemon.pokedex_number} pokemon={pokemon} />
+              ))}
+            </div>
+            {displayedPokemon.length < pokemonList.length && (
+              <div className="flex justify-center mt-8">
+                <button
+                  onClick={handleLoadMore}
+                  className="px-6 py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors duration-200"
+                >
+                  Load More
+                </button>
+              </div>
+            )}
+          </>
         )}
       </main>
     </div>

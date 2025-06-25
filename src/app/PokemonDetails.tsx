@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 
+// Updated Pokemon interface with imageUrl
 interface Pokemon {
   name: string;
   abilities: string[];
@@ -13,13 +14,14 @@ interface Pokemon {
   sp_attack: number;
   sp_defense: number;
   speed: number;
+  imageUrl?: string; // Added image URL field
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/public/data/pokemon.json`);
   const data: Pokemon[] = await res.json();
   const paths = data.map((pokemon) => ({
-    params: { name: pokemon.name.toLowerCase() }, // Match the route parameter
+    params: { name: pokemon.name.toLowerCase() },
   }));
   return { paths, fallback: false };
 };
@@ -44,7 +46,15 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
     <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-4xl font-bold text-center mb-6 capitalize">{pokemon.name}</h1>
       <div className="text-center">
-        {/* <p>Classification: {pokemon.classfication}</p> */}
+        {/* Lazy-loaded image - assuming imageUrl exists in the data */}
+        {pokemon.imageUrl && (
+          <img
+            src={pokemon.imageUrl}
+            alt={`${pokemon.name} sprite`}
+            loading="lazy" // Enables native lazy loading
+            className="mx-auto mb-4 w-48 h-48 object-contain"
+          />
+        )}
         <p>Type: {pokemon.type1} {pokemon.type2 && `/${pokemon.type2}`}</p>
         <p>Abilities: {pokemon.abilities.join(", ")}</p>
         <p>Height: {pokemon.height_m} m</p>

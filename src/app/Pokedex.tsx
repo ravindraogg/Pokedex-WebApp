@@ -63,7 +63,7 @@ const Pokedex: React.FC<PokedexProps> = ({ pokemonData, pokemonList }) => {
       <div className="flex justify-center items-center min-h-screen bg-[#f8f8fb] p-6 mt-16">
         <div
           className="w-full max-w-5xl shadow-2xl rounded-lg overflow-hidden border-4 border-red-500 flex"
-          onClick={handleCardClick} // Add the click handler here
+          onClick={handleCardClick}
         >
           <div className="flex flex-col justify-center items-center bg-red-500 p-4 space-y-4">
             <motion.button
@@ -100,6 +100,7 @@ const Pokedex: React.FC<PokedexProps> = ({ pokemonData, pokemonList }) => {
                 src={getPokemonImagePath()}
                 alt={pokemonData.name}
                 className="max-w-full h-auto object-contain bg-transparent"
+                loading="lazy" // Added lazy loading
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.onerror = null;
